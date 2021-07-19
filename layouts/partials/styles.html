@@ -1,0 +1,14 @@
+
+{{ $style_files := slice "layout.scss" }}
+
+{{ range $style_files }}
+    {{ $resourceName := printf "scss/%s" . }}
+    {{ $templateName := printf "template.%s" . }}
+    {{ with resources.Get $resourceName
+        | resources.ExecuteAsTemplate $templateName .
+        | resources.ToCSS (dict) }}
+    <style>
+        {{ .Content | safeCSS }}
+    </style>
+    {{ end }}
+{{ end }}
