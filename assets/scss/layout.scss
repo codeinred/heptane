@@ -1,3 +1,49 @@
-h1,h2,h3 {
-    color:#505050;
+body {
+    margin: 0;
 }
+main {
+    margin: 0 auto 0;
+    max-width: 45em;
+}
+
+article>* {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem 0;
+    max-width: 32rem;
+}
+article {
+    li {
+        margin: 0 0 0 2rem;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 1em;
+        margin-bottom: 0.25em;
+    }
+    blockquote>* {
+        margin-left: 1em;
+        padding-left: 0.75em;
+        padding-right: 0;
+        border-left: 0.25em solid gray;
+    }
+    p {
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+    iframe {
+        max-width: none;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
+.title {
+    text-align: center;
+}
+
+// Empty paragraphs shouldn't be displayed
+p:empty { display: none }

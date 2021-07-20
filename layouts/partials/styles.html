@@ -1,5 +1,5 @@
 
-{{ $style_files := slice "layout.scss" }}
+{{ $style_files := slice "font-faces.scss" "fonts.scss" "layout.scss" }}
 
 {{ range $style_files }}
     {{ $resourceName := printf "scss/%s" . }}
