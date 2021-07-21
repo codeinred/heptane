@@ -1,6 +1,6 @@
-$column: 672px;
-$wide: $column;
-$articleMargin: 1em;
+$columnWidth: 640px;
+$articleMargin: 16px;
+$articleWidth: ($columnWidth + 2 * $articleMargin);
 $paragraphSpacing: 1em;
 html {
     font-size: 16px;
@@ -8,20 +8,18 @@ html {
 }
 body {
     margin: 0;
-    background: #ffffff;
+    background: white;
 }
 main {
-    margin: 0 auto 0;
-    max-width: $wide;
+    display: flex;
+    justify-content: center;
 }
-
 article {
-    margin: 0 $articleMargin 0;
+    max-width: $articleWidth;
 }
 article > * {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: $column;
+    margin: 0 $articleMargin 0;
+    max-width: $columnWidth;
 }
 article * {
     margin-top: 0;
@@ -37,10 +35,12 @@ blockquote {
     margin-top: $paragraphSpacing;
     padding: 1em;
     padding-left: 0.75em;
+    border: 0 solid;
     border-left: 0.25em solid;
-    border-image: linear-gradient(to bottom, lightblue, rgb(0, 156, 156)) 0 0 0 1;
+    border-image: linear-gradient(to bottom, lightblue, rgb(0, 156, 156)) 0 0 0
+        1;
     background: white;
-    box-shadow:  20px 20px 80px #e5e5e5;
+    box-shadow: 20px 20px 80px #e5e5e5;
     font-style: italic;
     text-align: center;
 }
@@ -83,7 +83,7 @@ img {
     symbols: "w" "ww" "www" "wwww" "wwwww" "wwwwww" "wwwwwww" "wwwwwwww";
     prefix: "u";
     suffix: "u ~ ";
-  }
+}
 article {
     ul {
         list-style-type: "—  ";
@@ -111,17 +111,19 @@ article {
         top: 0;
         left: 0;
     }
+
     .wide {
         max-width: none;
     }
 }
-@media screen and (max-width: $column) {
-    .unpadded {
-        margin-left: -$articleMargin;
-        margin-right: -$articleMargin;
-    }
+.unpadded {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: $articleWidth) {
     .aside {
-        margin-right: -$articleMargin;
+        margin-right: 0;
     }
 }
 .title {
