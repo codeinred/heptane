@@ -124,11 +124,7 @@ article {
     margin-right: auto;
 }
 
-@media screen and (max-width: $articleWidth) {
-    .aside {
-        margin-right: 0;
-    }
-}
+// @media screen and (max-width: $articleWidth) {}
 .title {
     text-align: center;
 }
