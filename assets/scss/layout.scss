@@ -2,9 +2,9 @@ $columnWidth: 40rem;
 $articleMargin: 1rem;
 $articleWidth: ($columnWidth + 2 * $articleMargin);
 $paragraphSpacing: 1em;
-html, body {
+html {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.618;
     text-size-adjust: none;
     -webkit-text-size-adjust: none;
     -moz-text-size-adjust: none;
@@ -40,12 +40,18 @@ blockquote {
     padding-left: 0.75em;
     border: 0 solid;
     border-left: 0.25em solid;
-    border-image: linear-gradient(to bottom, lightblue, rgb(0, 156, 156)) 0 0 0
-        1;
+    //border-image: linear-gradient(180deg, lightblue, rgb(0, 156, 156)) 0 0 0 1;
+    // I really like whatever pink is created when orange and magenta are mixed
+    // 33% orange 66% magenta
+    border-image: linear-gradient(180deg, orange, magenta 150%) 1;
     background: white;
-    box-shadow: 20px 20px 80px #e5e5e5;
     font-style: italic;
     text-align: center;
+}
+blockquote,
+img,
+.iframe-container {
+    box-shadow: 0.5rem 0.5rem 2rem #e0e0e0;
 }
 
 blockquote *:first-child {
