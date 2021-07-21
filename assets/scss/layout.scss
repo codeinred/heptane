@@ -1,49 +1,129 @@
+$column: 672px;
+$wide: $column;
+$articleMargin: 1em;
+$paragraphSpacing: 1em;
+html {
+    font-size: 16px;
+    line-height: 1.6;
+}
 body {
     margin: 0;
+    background: #ffffff;
 }
 main {
     margin: 0 auto 0;
-    max-width: 45em;
+    max-width: $wide;
 }
 
-article>* {
+article {
+    margin: 0 $articleMargin 0;
+}
+article > * {
     margin-left: auto;
     margin-right: auto;
-    padding: 0 1rem 0;
-    max-width: 35rem;
+    max-width: $column;
+}
+article * {
     margin-top: 0;
-    margin-bottom: 1em;
+    margin-bottom: $paragraphSpacing;
 }
-blockquote>* {
-    margin-left: 1em;
+br {
+    margin-bottom: 0;
+}
+pre {
+    padding: 1em;
+}
+blockquote {
+    margin-top: $paragraphSpacing;
+    padding: 1em;
     padding-left: 0.75em;
-    padding-right: 0;
-    border-left: 0.25em solid gray;
+    border-left: 0.25em solid;
+    border-image: linear-gradient(to bottom, lightblue, rgb(0, 156, 156)) 0 0 0 1;
+    background: white;
+    box-shadow:  20px 20px 80px #e5e5e5;
+    font-style: italic;
+    text-align: center;
 }
-h1, h2, h3, h4, h5, h6 {
+
+blockquote *:first-child {
+    margin-top: 0;
+}
+blockquote *:last-child {
+    margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin-top: 1em;
-    margin-bottom: 0.25em;
+    margin-bottom: 0em;
 }
 li {
-    margin: 0 0 0 2rem;
+    margin: 0 0 0 0em;
 }
+hr {
+    max-width: 10em;
+}
+img {
+    display: block;
+}
+.aside {
+    float: right;
+    width: 30%;
+    font-size: 0.9em;
+    max-width: 20em;
+    min-width: 10em;
+    margin-left: $articleMargin;
+}
+@counter-style uwu {
+    system: cyclic;
+    symbols: "w" "ww" "www" "wwww" "wwwww" "wwwwww" "wwwwwww" "wwwwwwww";
+    prefix: "u";
+    suffix: "u ~ ";
+  }
 article {
+    ul {
+        list-style-type: "—  ";
+        // list-style-type: "🐈  ";
+        // list-style-type: "~  ";
+        // list-style-type: uwu ;
+    }
     img {
         width: 100%;
         height: auto;
+        border: none;
     }
+    .iframe-container {
+        position: relative;
+    }
+    .iframe-container > img {
+        display: block;
+        visibility: hidden;
+    }
+
     iframe {
         width: 100%;
-        height: auto;
-        aspect-ratio: 16 / 9;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
-    img, .video {
-        padding: 0;
+    .wide {
+        max-width: none;
+    }
+}
+@media screen and (max-width: $column) {
+    .unpadded {
+        margin-left: -$articleMargin;
+        margin-right: -$articleMargin;
+    }
+    .aside {
+        margin-right: -$articleMargin;
     }
 }
 .title {
     text-align: center;
 }
-
-// Empty paragraphs shouldn't be displayed
-p:empty { display: none }
