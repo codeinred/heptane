@@ -1,32 +1,28 @@
 header {
-    .inner-header {
-        height: 3em;
+    .inner-header, ul {
         display: grid;
+        height: 3em;
+        grid-column-gap: 1em;
+        grid-row-gap: 0;
+        align-items: center;
+        grid-template-rows: 1fr;
+    }
+    .inner-header {
         max-width: $outerWidth;
         margin: 0 auto 0;
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-template-rows: 1fr;
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-        align-items: center;
-    }
-    .brand {
-        margin-left: 1em;
-        justify-self: start;
-    }
-    nav {
-        justify-self: end;
+        padding: 0 1em 0;
+        grid-template-columns: auto max-content;
     }
     ul {
+        grid-template-columns: repeat(5, max-content);
         margin: 0;
         padding: 0;
+        justify-self: end;
     }
     li {
-        margin: 0 0 0 1em;
-    }
-    ul, li, nav {
-        display: inline-block;
+        justify-self: end;
+        margin: 0;
+        display: block;
     }
     box-shadow: $uiShadow;
 }
