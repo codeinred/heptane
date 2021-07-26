@@ -1,6 +1,8 @@
 @import 'definitions';
 
 @import 'header';
+
+@import 'backdrop';
 html {
     font-size: $remSize;
     line-height: $lineHeight;
@@ -18,6 +20,8 @@ main {
     justify-content: center;
 }
 article {
+    background: white;
+    box-shadow: $uiShadow;
     max-width: $outerWidth;
 }
 article > * {

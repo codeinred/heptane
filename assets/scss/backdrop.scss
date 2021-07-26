@@ -1,0 +1,9 @@
+@import 'definitions';
+
+#backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: $headerHeight;
+    z-index: -1;
+}

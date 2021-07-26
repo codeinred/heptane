@@ -5,4 +5,7 @@
     {{ partial "components/favicon.html" }}
 
     <title>{{ .Params.title }}</title>
+
+    {{ $script := resources.Get "js/backdrop.ts" | js.Build (dict) | fingerprint "md5" }}
+    <script src={{ $script.Permalink }} defer></script>
 </head>
