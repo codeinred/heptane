@@ -1,0 +1,32 @@
+header {
+    .inner-header {
+        height: 3em;
+        display: grid;
+        max-width: $outerWidth;
+        margin: 0 auto 0;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        align-items: center;
+    }
+    .brand {
+        margin-left: 1em;
+        justify-self: start;
+    }
+    nav {
+        justify-self: end;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        margin: 0 0 0 1em;
+    }
+    ul, li, nav {
+        display: inline-block;
+    }
+    box-shadow: $uiShadow;
+}
