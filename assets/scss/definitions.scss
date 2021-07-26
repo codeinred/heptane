@@ -2,9 +2,10 @@ $innerWidth: 40rem;
 $innerMargin: 1rem;
 $outerWidth: ($innerWidth + 2 * $innerMargin);
 $paragraphSpacing: 1em;
-$uiShadow: 0.5rem 0.5rem 2rem #e0e0e0;
+$uiShadow: 0.25rem 0.25rem 1rem #e0e0e0;
 $lineHeight: 1.618;
 $remSize: 16px;
+$headerHeight: 3.5rem;
 @function prettyBorder($direction) {
     @return linear-gradient($direction, orange, magenta 150%) 1;
 }

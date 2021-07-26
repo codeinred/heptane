@@ -1,10 +1,27 @@
 @import 'definitions';
 
+.header-backdrop {
+    display: block;
+    width: 100%;
+    // width: $outerWidth;
+    top: $headerHeight - 0.1rem;
+    // left: 50%;
+    // margin-left: -21rem;
+    height: 0.1rem;
+    position: fixed;
+    background: linear-gradient(to left, orange, magenta 150%);
+    z-index: 1;
+}
 header {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(8px);
     box-shadow: $uiShadow;
     .inner-header, .menu {
         display: grid;
-        height: 3em;
+        height: $headerHeight;
         grid-column-gap: 1em;
         grid-row-gap: 0;
         align-items: center;

@@ -13,6 +13,7 @@ body {
     background: white;
 }
 main {
+    margin-top: $headerHeight;
     display: flex;
     justify-content: center;
 }
