@@ -9,3 +9,12 @@ $headerHeight: 3.5rem;
 @function prettyBorder($direction) {
     @return linear-gradient($direction, orange, magenta 150%) 1;
 }
+
+@mixin blur-backdrop($blur-radius, $fallback) {
+    background: $fallback;
+    @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+        -webkit-backdrop-filter: blur($blur-radius);
+        backdrop-filter: blur($blur-radius);
+        background: none;
+    }
+}
