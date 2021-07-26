@@ -8,7 +8,7 @@ header {
         grid-template-rows: 1fr;
     }
     .inner-header {
-        max-width: $outerWidth;
+        max-width: $innerWidth;
         margin: 0 auto 0;
         padding: 0 1em 0;
         grid-template-columns: auto max-content;
