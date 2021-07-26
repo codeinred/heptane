@@ -1,7 +1,8 @@
 @import 'definitions';
 
 header {
-    .inner-header, ul {
+    box-shadow: $uiShadow;
+    .inner-header, .menu {
         display: grid;
         height: 3em;
         grid-column-gap: 1em;
@@ -15,16 +16,15 @@ header {
         padding: 0 1em 0;
         grid-template-columns: auto max-content;
     }
-    ul {
+    .menu {
         grid-template-columns: repeat(5, max-content);
         margin: 0;
         padding: 0;
         justify-self: end;
     }
-    li {
+    .menu > * {
         justify-self: end;
         margin: 0;
         display: block;
     }
-    box-shadow: $uiShadow;
 }
