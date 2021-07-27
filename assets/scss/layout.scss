@@ -15,7 +15,8 @@ body {
     background: white;
 }
 main {
-    margin-top: $headerHeight;
+    margin-top: (2 * $headerHeight);
+    margin-bottom: $headerHeight;
     display: flex;
     justify-content: center;
 }

@@ -1,8 +1,8 @@
-let body = <HTMLBodyElement>document.getElementsByTagName('body')[0];
+let body = document.body;
 
 body.onload = fill_backdrop;
 
-function fixCanvasDPI(canvas: HTMLCanvasElement, w, h) {
+function fixCanvasDPI(canvas: HTMLCanvasElement, w: number, h: number) {
     var context = canvas.getContext("2d"),
         dpr: number = window.devicePixelRatio || 1,
         bsr: number = context.webkitBackingStorePixelRatio ||
@@ -29,20 +29,24 @@ let symbols = "∀∁∂∃∄∅∆∇∈∉∊∋∌∍∎∏∐∑−∓∔�
 
 function fill_backdrop() {
     let canvas = <HTMLCanvasElement>document.getElementById('backdrop');
-    fixCanvasDPI(canvas, body.clientWidth, body.clientHeight);
+    fixCanvasDPI(canvas, body.clientWidth, body.clientHeight + 16 * 7);
     let context = canvas.getContext('2d');
     let width = canvas.width;
     let height = canvas.height;
 
-    context.font = '20px serif'
+    context.font = '16px serif'
     context.fillStyle = '#00000030';
-    let radius = 64;
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    let radius = 32;
     let dx = radius;
     let dy = radius * Math.sqrt(3) / 2.0;
     let shift = false;
     let count = symbols.length;
-    for (var y = 0; y < height; y += dy) {
+    for (var y = radius / 2; y < height + dy; y += dy) {
         for (var x = shift ? radius / 2 : 0; x < width; x += dx) {
+            if(Math.random() < 0.5)
+                continue;
             context.fillText(symbols[getRandomInt(0, count)], x, y);
         }
         shift = !shift;
