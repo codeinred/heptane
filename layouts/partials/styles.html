@@ -1,5 +1,5 @@
 
-{{ $style_files := slice "font-faces.scss" "fonts.scss" "layout.scss" }}
+{{ $style_files := slice "font-faces.scss" "fonts.scss" }}
 
 {{ range $style_files }}
     {{ $resourceName := printf "scss/%s" . }}
@@ -11,4 +11,11 @@
         {{ .Content | safeCSS }}
     </style>
     {{ end }}
+{{ end }}
+
+{{ with resources.Get "scss/style.scss"
+    | resources.ExecuteAsTemplate "" .
+    | resources.ToCSS (dict)
+    | fingerprint "md5" }}
+    <link rel="stylesheet" href="{{ .RelPermalink | safeURL }}">
 {{ end }}
