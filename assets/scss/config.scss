@@ -1,0 +1,4 @@
+
+    {{ $backdrop := resources.Get "images/backdrop.svg" | fingerprint "md5" }}
+
+    $backdropURL: url("{{ $backdrop.RelPermalink }}");

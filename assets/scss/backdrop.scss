@@ -1,5 +1,6 @@
 @import 'definitions';
 
 body {
-    background-color: rgb(60, 0, 60);
+    background-color: rgb(64, 0, 64);
+    background-image: $backdropURL, linear-gradient(rgb(64, 0, 64), rgb(0, 0, 90));
 }

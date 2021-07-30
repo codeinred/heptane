@@ -1,3 +1,8 @@
+// This imports definitions and other stuff from hugo
+{{ with resources.Get "scss/config.scss" | resources.ExecuteAsTemplate "" . }}
+{{ .Content }}
+{{ end }}
+
 @import 'definitions';
 
 @import 'header';
