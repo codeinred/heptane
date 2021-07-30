@@ -2,23 +2,6 @@ let body = document.body;
 
 body.onload = fill_backdrop;
 
-function fixCanvasDPI(canvas: HTMLCanvasElement, w: number, h: number) {
-    var context = canvas.getContext("2d"),
-        dpr: number = window.devicePixelRatio || 1,
-        bsr: number = context.webkitBackingStorePixelRatio ||
-            context.mozBackingStorePixelRatio ||
-            context.msBackingStorePixelRatio ||
-            context.oBackingStorePixelRatio ||
-            context.backingStorePixelRatio || 1;
-
-    var ratio = dpr / bsr;
-    canvas.width = w * ratio;
-    canvas.height = h * ratio;
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
-    canvas.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
-}
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -42,8 +25,8 @@ function svgElem(name: string, properties: any = null, innerHTML: string = null)
 function getTextElem(text: string, x: number, y: number) {
     const elem = svgElem('text');
     elem.innerHTML = text;
-    elem.setAttribute('x', `${x}`);
-    elem.setAttribute('y', `${y}`);
+    elem.setAttribute('x', `${x.toFixed(2)}`);
+    elem.setAttribute('y', `${y.toFixed(2)}`);
     return elem;
 }
 function getSVGBackgroundStyle(fontSize : number) {
@@ -64,7 +47,7 @@ function getSVGBlurElement() {
 
     const blur = svgElem('feGaussianBlur');
     blur.setAttribute('in', 'SourceGraphic');
-    blur.setAttribute('stdDeviation', '5');
+    blur.setAttribute('stdDeviation', '3');
     filter.appendChild(blur);
     return filter;
 }
@@ -75,13 +58,16 @@ function getSVGContents(id, fontSize, radius, width, height) {
 
     const content = svgElem('symbol');
     content.setAttribute('id', id);
-    content.setAttribute('width', `${width}`)
-    content.setAttribute('height', `${height}`)
-    content.setAttribute('viewBox', `0 0 ${width} ${height}`)
+    content.setAttribute('width', `${width.toFixed(2)}`)
+    content.setAttribute('height', `${height.toFixed(2)}`)
+    content.setAttribute('viewBox', `0 0 ${width.toFixed(2)} ${height.toFixed(2)}`)
 
     var shift = false;
-    for (var y = (radius + fontSize) / 2; y < height + dy; y += dy) {
-        for (var x = fontSize / 2 + (shift ? radius / 2 : 0); x < width; x += dx) {
+    const y0 = (radius + fontSize) / 2;
+    const x0 = fontSize / 2;
+    const x1 = x0 + radius / 2;
+    for (var y = y0; y < height; y += dy) {
+        for (var x = shift ? x0 : x1; x < width; x += dx) {
             if(Math.random() < 0.5)
                 continue;
             const symbol = symbols[getRandomInt(0, count)];
@@ -92,13 +78,13 @@ function getSVGContents(id, fontSize, radius, width, height) {
     return content;
 }
 function getSVGBackground() {
-    const radius = 32;
-    const fontSize = 16;
+    const radius = 30;
+    const fontSize = 14;
     const background = svgElem('svg');
     const dx = radius;
     const dy = radius * Math.sqrt(3) / 2.0;
-    const width = dx * 20;
-    const height = dy * 20;
+    const width = dx * 30;
+    const height = dy * Math.ceil(30 * 2 / Math.sqrt(3));
 
 
     background.setAttribute('width', `${width}`)
@@ -132,9 +118,8 @@ function utf8_to_b64( str ) {
 }
 
 function fill_backdrop() {
-
     const backdrop = document.getElementById('backdrop');
     const svgBackgrond = getSVGBackground();
-    var mySVG64 = utf8_to_b64(svgBackgrond.outerHTML);
-    document.getElementById('backdrop').style.backgroundImage = `url('data:image/svg+xml;base64,${mySVG64}')`;
+    const mySVG64 = utf8_to_b64(svgBackgrond.outerHTML);
+    document.body.style.backgroundImage = `url('data:image/svg+xml;base64,${mySVG64}'), linear-gradient(rgb(64, 0, 64), rgb(0, 0, 90))`;
 }
