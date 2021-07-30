@@ -1,8 +1,9 @@
-let body = document.body;
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
-body.onload = fill_backdrop;
+const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body></body></html>`);
 
-function getRandomInt(min, max) {
+function getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
@@ -10,16 +11,9 @@ function getRandomInt(min, max) {
 
 let symbols = "∀∁∂∃∄∅∆∇∈∉∊∋∌∍∎∏∐∑−∓∔∕∖∗∘∙√∛∜∝∞∟∠∡∢∣∤∥∦∧∨∩∪∫∬∭∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟≠≡≢≣≤≥≦≧≨≩≪≫≬≭≮≯≰≱≲≳≴≵≶≷≸≹≺≻≼≽≾≿⊀⊁⊂⊃⊄⊅⊆⊇⊈⊉⊊⊋⊌⊍⊎⊏⊐⊑⊒⊓⊔⊕⊖⊗⊘⊙⊚⊛⊜⊝⊞⊟⊠⊡⊢⊣⊤⊥⊦⊧⊨⊩⊪⊫⊬⊭⊮⊯⊰⊱⊲⊳⊴⊵⊶⊷⊸⊹⊺⊻⊼⊽⊾⊿⋀⋁⋂⋃⋄⋅⋆⋇⋈⋉⋊⋋⋌⋍⋎⋏⋐⋑⋒⋓⋔⋕⋖⋗⋘⋙⋚⋛⋜⋝⋞⋟⋠⋡⋢⋣⋤⋥⋦⋧⋨⋩⋪⋫⋬⋭⋮⋯⋰⋱⋲⋳⋴⋵⋶⋷⋸⋹⋺⋻⋼⋽⋾⋿"
 
-function svgElem(name: string, properties: any = null, innerHTML: string = null) {
+function svgElem(name: string) {
+    const document = dom.window.document;
     const elem = document.createElementNS('http://www.w3.org/2000/svg', name);
-    if (properties != null) {
-        for (var prop in Object.keys(properties)) {
-            elem.setAttribute(prop, `${properties[prop]}`);
-        }
-    }
-    if (innerHTML != null) {
-        elem.innerHTML = innerHTML;
-    }
     return elem;
 }
 function getTextElem(text: string, x: number, y: number) {
@@ -51,7 +45,7 @@ function getSVGBlurElement() {
     filter.appendChild(blur);
     return filter;
 }
-function getSVGContents(id, fontSize, radius, width, height) {
+function getSVGContents(id: string, fontSize: number, radius: number, width: number, height: number) {
     const dx = radius;
     const dy = radius * Math.sqrt(3) / 2.0;
     const count = symbols.length;
@@ -87,8 +81,8 @@ function getSVGBackground() {
     const height = dy * Math.ceil(30 * 2 / Math.sqrt(3));
 
 
-    background.setAttribute('width', `${width}`)
-    background.setAttribute('height', `${height}`)
+    background.setAttribute('width', `${width.toFixed(2)}`)
+    background.setAttribute('height', `${height.toFixed(2)}`)
     background.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
     background.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
 
@@ -113,13 +107,8 @@ function getSVGBackground() {
     return background;
 }
 
-function utf8_to_b64( str ) {
-    return window.btoa(unescape(encodeURIComponent( str )));
-}
+// function utf8_to_b64( str ) {
+//     return window.btoa(unescape(encodeURIComponent( str )));
+// }
 
-function fill_backdrop() {
-    const backdrop = document.getElementById('backdrop');
-    const svgBackgrond = getSVGBackground();
-    const mySVG64 = utf8_to_b64(svgBackgrond.outerHTML);
-    document.body.style.backgroundImage = `url('data:image/svg+xml;base64,${mySVG64}'), linear-gradient(rgb(64, 0, 64), rgb(0, 0, 90))`;
-}
+console.log(getSVGBackground().outerHTML);
