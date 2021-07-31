@@ -25,5 +25,5 @@ module:
     # Crux is included as a git submodule within heptane
     - path: heptane/crux
       mounts:
-        - source: render-hooks/render-heading.html
+        - source: markup/render-heading.html
           target: layouts/_default/_markup/render-heading.html
