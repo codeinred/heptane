@@ -18,3 +18,12 @@ markup:
       hardWraps: false
       unsafe: true
       xhtml: false
+
+module:
+  imports:
+    # Path is relative to themes directory for project using heptane
+    # Crux is included as a git submodule within heptane
+    - path: heptane/crux
+      mounts:
+        - source: render-hooks/render-heading.html
+          target: layouts/_default/_markup/render-heading.html
