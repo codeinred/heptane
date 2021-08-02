@@ -27,3 +27,5 @@ module:
       mounts:
         - source: markup/render-heading.html
           target: layouts/_default/_markup/render-heading.html
+        - source: scss/
+          target: assets/scss/
