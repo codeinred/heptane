@@ -1,0 +1,9 @@
+{{ define "main" }}
+<main>
+    <article>
+        <h1 class="title">{{ .Params.title }}</h1>
+        {{/* We remove any empty paragraph tags */}}
+        {{ .Content | replaceRE  "<p>( |\n|\t)*</p>" "" | safeHTML }}
+    </article>
+</main>
+{{ end }}
